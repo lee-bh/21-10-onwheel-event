@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+		body{margin: 0; background: url(car.jpg) no-repeat; background-size: 100% auto;
+			font-size: 5rem; text-align: center; padding-top: 5rem; color: white;}
+		.sticker{position: absolute;width: 50px; height: 50px; border-radius: 3px; background: blueviolet;;}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<script type="text/javascript">
+		alert("내차에 누가 딱지 붙였냐!");
+		var goal = 6;
+		for(var i=0; i<goal; i++){
+			var s = document.createElement("div");
+			s.className = "sticker";
+			s.style.left = (window.innerWidth * Math.random() - 40) + "px";
+			s.style.bottom = (window.innerHeight * Math.random() - 40) + "px";	
+			document.body.appendChild(s);
+			s.onwheel = function(e){
+				if(e.wheelDelta < 0){
+					var t = window.getComputedStyle(e.target);
+					var h = parseInt(t.height);
+
+					e.target.style.height = h - 0.5 + "px";
+					if(h < 1){
+						e.target.parentNode.removeChild(e.target);
+						goal--;console.log(goal);
+						if(goal == 0){
+							document.body.innerHTML = "finished!!";
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+	</script>
+</body>
+</html>
